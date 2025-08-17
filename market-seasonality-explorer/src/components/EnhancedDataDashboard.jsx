@@ -1,6 +1,6 @@
 "use client";
-import { Badge } from "./ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import { Badge } from "./ui/Badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/Tabs";
 import {
   TrendingUp,
   Activity,

@@ -2,17 +2,17 @@
 
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { Badge } from "./ui/badge";
+import { Button } from "./ui/Button";
+import { Input } from "./ui/Input";
+import { Badge } from "./ui/Badge";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./ui/select";
-import { Switch } from "./ui/switch";
+} from "./ui/Select";
+import { Switch } from "./ui/Switch";
 import {
   Bell,
   BellOff,

@@ -1,16 +1,16 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { Badge } from "./ui/badge";
-import { Switch } from "./ui/switch";
-import { Label } from "./ui/label";
+import { Badge } from "./ui/Badge";
+import { Switch } from "./ui/Switch";
+import { Label } from "./ui/Label";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./ui/select";
+} from "./ui/Select";
 import {
   Loader2,
   TrendingUp,
@@ -19,7 +19,7 @@ import {
   Volume2,
 } from "lucide-react";
 import ErrorBoundary from "./ErrorBoundary";
-import { Button } from "./ui/button";
+import { Button } from "./ui/Button";
 
 export function FilterControls({ filters, onFiltersChange, loading }) {
   const [localFilters, setLocalFilters] = useState(filters);

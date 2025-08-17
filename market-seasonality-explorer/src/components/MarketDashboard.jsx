@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { Card } from "./ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/Tabs";
 import { useMarketData } from "../hooks/use-market-data";
 import { FilterControls } from "./FilterControls";
 import { ExportControls } from "./ExportControls";
@@ -203,93 +203,95 @@ export function MarketDashboard() {
           {/* Main Content */}
           <div className="grid grid-cols-1 xl:grid-cols-4 gap-4 sm:gap-6">
             {/* Calendar Section */}
-            <ErrorBoundary>
-              <SlideIn direction="up" className="xl:col-span-3">
-                <Card className="p-2 sm:p-4 lg:p-6">
-                  <div className="flex flex-col space-y-4">
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between space-y-2 sm:space-y-0">
+            <div className="xl:col-span-3 xl:sticky xl:top-4 self-start">
+              <ErrorBoundary>
+                <SlideIn direction="up">
+                  <Card className="p-2 sm:p-4 lg:p-6 xl:max-h-[calc(100vh-2rem)] xl:overflow-y-auto custom-scrollbar">
+                    <div className="flex flex-col space-y-4">
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between space-y-2 sm:space-y-0">
+                        <Tabs
+                          value={timeFrame}
+                          onValueChange={(value) => setTimeFrame(value)}
+                          className="w-full sm:w-auto"
+                        >
+                          <TabsList className="grid w-full grid-cols-3 bg-muted/50 p-1 rounded-lg h-10 sm:h-auto">
+                            <TabsTrigger
+                              value="daily"
+                              className="data-[state=active]:bg-white data-[state=active]:shadow-sm font-medium text-xs sm:text-sm px-2"
+                            >
+                              📅 <span className="hidden xs:inline">Daily</span>
+                            </TabsTrigger>
+                            <TabsTrigger
+                              value="weekly"
+                              className="data-[state=active]:bg-white data-[state=active]:shadow-sm font-medium text-xs sm:text-sm px-2"
+                            >
+                              📊 <span className="hidden xs:inline">Weekly</span>
+                            </TabsTrigger>
+                            <TabsTrigger
+                              value="monthly"
+                              className="data-[state=active]:bg-white data-[state=active]:shadow-sm font-medium text-xs sm:text-sm px-2"
+                            >
+                              📈 <span className="hidden xs:inline">Monthly</span>
+                            </TabsTrigger>
+                          </TabsList>
+                        </Tabs>
+                      </div>
+
                       <Tabs
                         value={timeFrame}
                         onValueChange={(value) => setTimeFrame(value)}
-                        className="w-full sm:w-auto"
                       >
-                        <TabsList className="grid w-full grid-cols-3 bg-muted/50 p-1 rounded-lg h-10 sm:h-auto">
-                          <TabsTrigger
-                            value="daily"
-                            className="data-[state=active]:bg-white data-[state=active]:shadow-sm font-medium text-xs sm:text-sm px-2"
-                          >
-                            📅 <span className="hidden xs:inline">Daily</span>
-                          </TabsTrigger>
-                          <TabsTrigger
-                            value="weekly"
-                            className="data-[state=active]:bg-white data-[state=active]:shadow-sm font-medium text-xs sm:text-sm px-2"
-                          >
-                            📊 <span className="hidden xs:inline">Weekly</span>
-                          </TabsTrigger>
-                          <TabsTrigger
-                            value="monthly"
-                            className="data-[state=active]:bg-white data-[state=active]:shadow-sm font-medium text-xs sm:text-sm px-2"
-                          >
-                            📈 <span className="hidden xs:inline">Monthly</span>
-                          </TabsTrigger>
-                        </TabsList>
+                        <TabsContent value="daily" className="mt-6">
+                          <CalendarView
+                            data={data}
+                            timeFrame={timeFrame}
+                            filters={filters}
+                            selectedDate={selectedDate}
+                            selectedDates={selectedDates}
+                            onDateSelect={handleDateSelect}
+                            onDatesSelect={handleDatesSelect}
+                            loading={loading}
+                            zoomLevel={zoomLevel}
+                            isComparisonMode={isComparisonMode}
+                            currentTheme={currentTheme}
+                          />
+                        </TabsContent>
+                        <TabsContent value="weekly" className="mt-6">
+                          <CalendarView
+                            data={data}
+                            timeFrame="weekly"
+                            filters={filters}
+                            selectedDate={selectedDate}
+                            selectedDates={selectedDates}
+                            onDateSelect={handleDateSelect}
+                            onDatesSelect={handleDatesSelect}
+                            loading={loading}
+                            zoomLevel={zoomLevel}
+                            isComparisonMode={isComparisonMode}
+                            currentTheme={currentTheme}
+                          />
+                        </TabsContent>
+                        <TabsContent value="monthly" className="mt-6">
+                          <CalendarView
+                            data={data}
+                            timeFrame="monthly"
+                            filters={filters}
+                            selectedDate={selectedDate}
+                            selectedDates={selectedDates}
+                            onDateSelect={handleDateSelect}
+                            onDatesSelect={handleDatesSelect}
+                            loading={loading}
+                            zoomLevel={zoomLevel}
+                            isComparisonMode={isComparisonMode}
+                            currentTheme={currentTheme}
+                          />
+                        </TabsContent>
                       </Tabs>
                     </div>
-
-                    <Tabs
-                      value={timeFrame}
-                      onValueChange={(value) => setTimeFrame(value)}
-                    >
-                      <TabsContent value="daily" className="mt-6">
-                        <CalendarView
-                          data={data}
-                          timeFrame={timeFrame}
-                          filters={filters}
-                          selectedDate={selectedDate}
-                          selectedDates={selectedDates}
-                          onDateSelect={handleDateSelect}
-                          onDatesSelect={handleDatesSelect}
-                          loading={loading}
-                          zoomLevel={zoomLevel}
-                          isComparisonMode={isComparisonMode}
-                          currentTheme={currentTheme}
-                        />
-                      </TabsContent>
-                      <TabsContent value="weekly" className="mt-6">
-                        <CalendarView
-                          data={data}
-                          timeFrame="weekly"
-                          filters={filters}
-                          selectedDate={selectedDate}
-                          selectedDates={selectedDates}
-                          onDateSelect={handleDateSelect}
-                          onDatesSelect={handleDatesSelect}
-                          loading={loading}
-                          zoomLevel={zoomLevel}
-                          isComparisonMode={isComparisonMode}
-                          currentTheme={currentTheme}
-                        />
-                      </TabsContent>
-                      <TabsContent value="monthly" className="mt-6">
-                        <CalendarView
-                          data={data}
-                          timeFrame="monthly"
-                          filters={filters}
-                          selectedDate={selectedDate}
-                          selectedDates={selectedDates}
-                          onDateSelect={handleDateSelect}
-                          onDatesSelect={handleDatesSelect}
-                          loading={loading}
-                          zoomLevel={zoomLevel}
-                          isComparisonMode={isComparisonMode}
-                          currentTheme={currentTheme}
-                        />
-                      </TabsContent>
-                    </Tabs>
-                  </div>
-                </Card>
-              </SlideIn>
-            </ErrorBoundary>
+                  </Card>
+                </SlideIn>
+              </ErrorBoundary>
+            </div>
 
             {/* Right Panel */}
             <ErrorBoundary>

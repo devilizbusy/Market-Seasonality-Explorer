@@ -1,14 +1,14 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { Button } from "./ui/button";
+import { Button } from "./ui/Button";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./ui/select";
+} from "./ui/Select";
 import { Download, FileText, ImageIcon, Table, Loader2 } from "lucide-react";
 import { format } from "date-fns";
 import ErrorBoundary from "./ErrorBoundary";

@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "../ui/button";
+import { Button } from "../ui/Button";
 import { ChevronLeft, ChevronRight, CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { FadeIn } from "../animations/FadeIn";

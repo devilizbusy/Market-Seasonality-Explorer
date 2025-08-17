@@ -1,16 +1,16 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { Button } from "./ui/button";
-import { Switch } from "./ui/switch";
-import { Label } from "./ui/label";
+import { Button } from "./ui/Button";
+import { Switch } from "./ui/Switch";
+import { Label } from "./ui/Label";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./ui/select";
+} from "./ui/Select";
 import {
   MousePointer,
   Hand,

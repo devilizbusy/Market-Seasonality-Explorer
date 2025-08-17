@@ -288,6 +288,7 @@ export function CalendarCell({
           ${cellStyles}
           ${className}
         `}
+        data-today={isToday ? "true" : undefined}
         onClick={handleClick}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}

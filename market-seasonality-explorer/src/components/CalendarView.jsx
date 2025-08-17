@@ -611,7 +611,19 @@ export function CalendarView({
 
   return (
     <ErrorBoundary>
-      <div className="relative select-none" tabIndex={0} {...touchHandlers}>
+      <div
+        className="relative select-none"
+        tabIndex={0}
+        {...touchHandlers}
+        onLoadCapture={() => {
+          try {
+            const todayEl = document.querySelector('[data-today="true"]');
+            if (todayEl && todayEl.scrollIntoView) {
+              todayEl.scrollIntoView({ block: "center", inline: "nearest" });
+            }
+          } catch {}
+        }}
+      >
         {/* Enhanced Instructions with keyboard navigation info */}
         <div className="mb-3 sm:mb-4 p-3 sm:p-4 bg-blue-50 border border-blue-200 rounded-lg">
           <div className="text-xs sm:text-sm text-blue-800 space-y-2">
